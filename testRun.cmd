@@ -5,7 +5,7 @@ setlocal enabledelayedexpansion
 set "command=bin\Release\net9.0\win-x64\publish\CliPerf.exe"
 
 IF NOT EXIST "%command%" (
-    echo "Building executable"
+    echo Building executable
     dotnet publish -r win-x64 -c Release
 )
 
@@ -22,7 +22,7 @@ for /L %%R in (1,1,%repeats%) do (
 
     :: Run the command 100 times
     for /L %%I in (1,1,%iterations%) do (
-        %command%
+        %command% > nul 2>&1
     )
 
     :: Get the end time in hundredths of a second
